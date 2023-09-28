@@ -18,18 +18,14 @@ public class Program {
             Reservation reservation = new Reservation(1001, checkIn,checkOut);
             System.out.println("Reservation: "+ reservation);
 
-            checkIn = sdf.parse("25/09/2023");
-            checkOut = sdf.parse("26/09/2023");
-            Date now = new Date();
-            if (checkIn.before(now) || checkOut.before(now)){
-                System.out.println("Reservation dates for update must be future dates");
-            }else if (!checkOut.after(checkIn)){
-                System.out.println("Check-out date must be after check-in date");
-            }else {
-                reservation.updateDate(checkIn,checkOut);
-                System.out.println("Reservation: "+ reservation);
-            }
-
+            checkIn = sdf.parse("30/09/2023");
+            checkOut = sdf.parse("31/09/2023");
+               String error =  reservation.updateDate(checkIn,checkOut);
+               if(error!= null){
+                   System.out.println("Error in reservation: " + error);
+               }else{
+                   System.out.println("Reservation: "+ reservation);
+               }
         }
     }
 }
